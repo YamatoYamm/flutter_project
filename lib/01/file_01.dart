@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
 
     final Map<String, dynamic> result = jsonDecode(response.body) as Map<String, dynamic>;
     final List<dynamic> movies = result['data']['movies'] as List<dynamic>;
-
     final List<Movie> data = <Movie>[];
     for (int i = 0; i < movies.length; i++) {
       final Map<String, dynamic> item = movies[i] as Map<String, dynamic>;
