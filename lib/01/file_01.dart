@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:http/http.dart';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 void main() {
   runApp(const MovieApp());
@@ -71,30 +72,32 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Builder(builder: (BuildContext context) {
-        if (_isLoading && _movies.isEmpty) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        return ListView.builder(
-          itemCount: _movies.length,
-          itemBuilder: (BuildContext context, int index) {
-            final Movie movie = _movies[index];
-
-            return Column(
-              children: <Widget>[
-                Image.network(movie.poster),
-                Text(movie.title),
-                Text('${movie.year}'),
-                Text(movie.genres.join(', ')),
-                Text('${movie.rating}')
-              ],
+      body: Builder(
+        builder: (BuildContext context) {
+          if (_isLoading && _movies.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        );
-      }),
+          }
+
+          return ListView.builder(
+            itemCount: _movies.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Movie movie = _movies[index];
+
+              return Column(
+                children: <Widget>[
+                  Image.network(movie.poster),
+                  Text(movie.title),
+                  Text('${movie.year}'),
+                  Text(movie.genres.join(', ')),
+                  Text('${movie.rating}')
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
